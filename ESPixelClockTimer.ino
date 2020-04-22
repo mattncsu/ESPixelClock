@@ -8,7 +8,8 @@
 //  Based on 7Segment code by Marc Miller, (https://github.com/marmilicious/FastLED_examples/)
 //  and ESP32 Simpletime example
 //
-//
+//  This example is used as a stop watch timer on a short climbing wall
+//  Press a button and it starts a 10s countdown and then push again to stop the clock
 //***************************************************************
 #include <FastLED_NeoMatrix.h>
 #include <FastLED.h>
