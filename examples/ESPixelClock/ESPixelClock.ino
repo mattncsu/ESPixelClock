@@ -72,7 +72,7 @@ float temp,rh;
 DateTime now;
 
 #define LED_PIN     27 //LED from lighted switch
-#define BTN_PIN     28 //Push button to start stop watch mode
+#define BTN_PIN     32 //Push button to start stop watch mode
 #define IDLE_TIME   5*60*1000 //terminate stop watch mode after 5 minutes
 
 uint8_t autoplay = 0;
@@ -187,8 +187,7 @@ void printLocalTime()
   setenv("TZ", tzInfo.c_str(), 1);
   tzset();
   now = DS3231M.now();
-  temp = SHT21.getTemperature()+temperatureOffset;
-  rh = SHT21.getHumidity();
+
   //struct tm timeinfo;
 
   Serial.printf("%04d-%02d-%02d %02d:%02d:%02d Temp: %.1fC RH:%.1f%%  %s\n", now.year(),          // Use sprintf() to pretty print    //
@@ -235,8 +234,6 @@ void getNTPTime(){
 void setup() {
   pinMode(button1.PIN,INPUT_PULLUP);
   attachInterruptArg(button1.PIN, isr, &button1, FALLING);
-  pinMode(15, OUTPUT); //Led pin GND
-  digitalWrite(15,LOW); //ground LED pin
   pinMode(LED_PIN, OUTPUT);
 
   Serial.begin(115200);
@@ -285,7 +282,9 @@ void setup() {
   AsyncElegantOTA.begin(&server);    // Start ElegantOTA
   server.begin();
   Serial.println("HTTP server started on port 80");
-  getNTPTime();
+  getNTPTime(); //get initial time
+  temp = SHT21.getTemperature()+temperatureOffset; //get inital temp reading
+  rh = SHT21.getHumidity();
 }
 
 void maskTime(int timeInt){
@@ -490,4 +489,10 @@ void loop()
     Serial.println("tz changed");
     tzChanged=false;
   }
+
+  EVERY_N_MINUTES(5){ //I2C reading causes studder in pattern
+    temp = SHT21.getTemperature()+temperatureOffset;
+    rh = SHT21.getHumidity();
+  }
+
 }
