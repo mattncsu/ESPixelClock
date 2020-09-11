@@ -17,5 +17,6 @@ install the required libraries, including (but not necessarily limited to)
 Compile code to verify changes,
 
 Then Go to the _Sketch_ menu > and click _Export Compiled Binary_
+
 Upload the .bin file created using the web UI
 
