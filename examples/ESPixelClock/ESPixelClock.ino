@@ -84,6 +84,7 @@ uint8_t currentPatternIndex = 0; // Index number of which pattern is current
 uint8_t gHue = 0; // rotating "base color" used by many of the patterns
 
 uint8_t power = 1;
+uint8_t leadingZeroEnabled = 1;
 uint8_t time24 = 1;
 uint8_t brightness = 8;
 
@@ -303,7 +304,13 @@ void maskTime(int timeInt){
   CRGB color = CRGB::Black; //unused segment color
   
   //next block of if statements sets segments to black to form digits
-  if (c1000 == 0) { seg1G = color; }
+  if (c1000 == 0) { 
+    if (leadingZeroEnabled==1){  //set leading value to black if zero
+      seg1G = color; 
+    } else {
+      seg1A = seg1B = seg1C = seg1D = seg1E = seg1F = seg1G = color;
+    }
+  }
   if (c1000 == 1) { seg1A = seg1D = seg1E = seg1F = seg1G = color; } 
   if (c1000 == 2) { seg1C = seg1F = color; } 
   if (c1000 == 3) { seg1E = seg1F = color; } 
