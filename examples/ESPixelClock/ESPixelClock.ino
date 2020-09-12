@@ -85,6 +85,7 @@ uint8_t gHue = 0; // rotating "base color" used by many of the patterns
 
 uint8_t power = 1;
 uint8_t leadingZeroEnabled = 1;
+uint8_t blinkingColonEnabled = 1;
 uint8_t time24 = 1;
 uint8_t brightness = 8;
 
@@ -354,7 +355,7 @@ void maskTime(int timeInt){
   if (c1 == 8) {  }
   if (c1 == 9) { seg4D = seg4E = color; } 
 
-  if (!colon){
+  if (!colon && blinkingColonEnabled == 1){
     col = CRGB::Black; //turns off colon to make it blink
   }
   if (timerMode){
