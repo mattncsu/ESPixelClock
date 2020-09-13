@@ -32,6 +32,26 @@ String setPower(String value) {
   return String(power);
 }
 
+String getLeadingZero() {
+  return String(leadingZeroEnabled);
+}
+
+String setLeadingZero(String value) {
+  leadingZeroEnabled = value.toInt();
+  leadingZeroEnabled = leadingZeroEnabled == 0 ? 0 : 1;
+  return String(leadingZeroEnabled);
+}
+
+String getBlinkingColon() {
+  return String(blinkingColonEnabled);
+}
+
+String setBlinkingColon(String value) {
+  blinkingColonEnabled = value.toInt();
+  blinkingColonEnabled = blinkingColonEnabled == 0 ? 0 : 1;
+  return String(blinkingColonEnabled);
+}
+
 String getTime24() {
   return String(time24);
 }
@@ -265,6 +285,8 @@ String setTwinkleDensity(String value) {
 FieldList fields = {
   { "power", "Power", BooleanFieldType, 0, 1, getPower, NULL, setPower },
   { "time24", "24 hour time", BooleanFieldType, 0, 1, getTime24, NULL, setTime24 },
+  { "leadingZeroEnabled", "Show Leading Zero", BooleanFieldType, 0, 1, getLeadingZero, NULL, setLeadingZero },
+  { "blinkingColonEnabled", "Blink colon", BooleanFieldType, 0, 1, getBlinkingColon, NULL, setBlinkingColon },
 //  { "timezoneOffset", "Timezone Offset Hours", NumberFieldType, -12, 14, getTimezoneOffset, NULL, setTimezoneOffset },
   { "temperatureOffset", "Temperature offset", NumberFieldType, -20, 20, getTemperatureOffset, NULL, setTemperatureOffset},
   { "temperature", "Temperature", NumberFieldType, temp-1, temp+1, getTemp, NULL, setTemp},
