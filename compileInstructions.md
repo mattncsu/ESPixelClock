@@ -18,5 +18,7 @@ Compile code to verify changes,
 
 Then Go to the _Sketch_ menu > and click _Export Compiled Binary_
 
-Upload the .bin file created using the web UI
+The web files are stored in the data subdirectory and uploaded to the file system of the clock. To update the files on the clock, use the ESP32 Sketch Data Upload plugin to generate a binary of the spiffs partition. Ignore errors about not being connected.  Watch the status messages for the path to the temporary binary files generated. On my machine, they were in C:\Users\<username>\AppData\Local\Temp\arduino_build_299134.
+
+Upload the .bin file created using the web UI.
 
