@@ -36,7 +36,7 @@
     </div>
   </nav>
     <form action='/WIFIsubmit' method='POST' enctype="multipart/form-data" style="width: 40ch;padding-left:50px;">
-    <h1>Configuration</h1>
+    <h1>"%NAME%" Configuration</h1>
 	Wifi SSID: <input class="form-control input" type='text' name='WIFI_AP' value='%WIFIAP%' ><br>
     Wifi Password: <input class="form-control input" type='password' name='WIFI_PASS' value='%PASSWORD%'><br>
     NTP Server1: <input class="form-control input" type='text' name='NTP_SERVER1' value='%NTPSERVER1%'><br>
@@ -475,7 +475,8 @@
   <label  for="Time">Time:</label>
   <input class="form-control input" type="time" id="time" name="TIME" value="%TIME%" step="1">
 	<div style="font-size:10px">Time submitted will be overridden by NTP time if WiFi and NTP servers available.</div>
-	
+  <label for="date">Clock Name:</label>
+  <input class="form-control input" type="text" id="text" name="NAME" value="%NAME%">
 	<input class="btn btn-default" type='submit' value='Submit'>
 </form>
 <br>

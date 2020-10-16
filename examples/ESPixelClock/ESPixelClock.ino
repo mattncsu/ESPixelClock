@@ -55,7 +55,7 @@ AsyncWebServer server(80); //for the update server
 #warning "Requires FastLED 3.1.8 or later; check github for latest code."
 #endif
 
-String ssid,password,tzInfo,ntpServer1,ntpServer2; 
+String ssid,password,tzInfo,ntpServer1,ntpServer2,clockName; 
 
 int8_t timezoneOffset = -6; // Central Time
 bool tzChanged=false;
@@ -252,6 +252,7 @@ void setup() {
     Serial.printf("     ntpServer1: %s\n",ntpServer1.c_str());
     ntpServer2 = preferences.getString("ntpServer2", "pool.ntp.org");
     Serial.printf("     ntpServer2: %s\n",ntpServer2.c_str());
+    clockName = preferences.getString("clockName", "ESPixelClock");
   preferences.end();
   Serial.println("Done loading data from EEPROM");
 

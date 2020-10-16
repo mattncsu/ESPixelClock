@@ -41,6 +41,7 @@ String processor(const String& var){
   if(var == "DATE"){Serial.println(dateStr);return String(dateStr);}
   if(var == "TIME"){Serial.println(timeStr);return String(timeStr);}
   if(var == "TIMEZONE"){Serial.println(tzInfo);return String(tzInfo);}
+  if(var == "NAME"){Serial.println(clockName);return String(clockName);}
   return String(); //Return empty string if no matches
 }
 
@@ -158,6 +159,9 @@ void setupWeb() {
         recvDate=params;
       } else if (name == "TIME") {
         recvTime=params;
+      } else if (name == "NAME") {
+        clockName=params;
+        preferences.putString("clockName",params);
       }
     }
     preferences.end();
